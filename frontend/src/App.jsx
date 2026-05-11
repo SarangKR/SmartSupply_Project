@@ -189,7 +189,8 @@ function ForecastPage({ addToast }) {
   const fetchForecast = async () => {
     setLoading(true);
     try {
-      const r = await fetch("http://localhost:8000/forecast", {
+      const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const r = await fetch(`${API_URL}/forecast`, {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ item, days, lead_time:7, holding_cost:2, ordering_cost:50 }),
       });
